@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&display=swap" rel="stylesheet">
+  <title>upload</title>
+</head>
+<style>
+  body {
+     background-image: linear-gradient(to bottom, rgba(300,300, 300, 0.7) 0%,rgba(300, 300, 300, 0.7) 100%), url('https://wallpaperaccess.com/full/277644.jpg');
+     background-size: cover;
+    font-family: 'mali', serif;
+    font-size: 15px;
+    background-size: cover;
+    margin-top: 10%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .it .btn-orange {
+    background-color: blue;
+    border-color: #777 !important;
+    color: #777;
+    text-align: left;
+    width: 100%;
+  }
+
+  .it input.form-control {
+
+    border: none;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .it .form-control:focus {
+    border-color: #ff4d0d;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .fileUpload {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  .input-group {
+    width: 100%;
+    top: -9rem;
+  }
+  .container{
+    background-color: rgba(255, 255, 255, 0.63);
+    box-shadow: 0 4px 8px 0 rgba(255, 63, 181, 0.2), 0 6px 20px 0 rgba(255, 106, 210, 0.19);
+    width: 40%;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <h2 style="text-align: center;">บันทึกข้อมูล</h2>
+    <form method="POST" enctype="multipart/form-data" class="e">
+      <div class="form-group">
+        <label for="fname">ชื่อ</label>
+        <input type="text" class="form-control" name="fname" required>
+      </div>
+      <div class="form-group">
+        <label for="fname">นามสกุล</label>
+        <input type="text" class="form-control" name="lname" required>
+      </div>
+      <div class="form-group">
+        <label for="fname">เบอร์โทรศัพท์</label>
+        <input type="number" class="form-control" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="fname">อีเมล</label>
+        <input type="email" class="form-control" name="email" style="margin-bottom: 2.5%;" required><br><br><br>
+        <!--button-->
+        <a class="btn btn-success" href="/">กลับหน้าแรก</a>
+        <button type="submit" class="pull-right btn btn-primary">บันทึก</button>
+    <!-- File upload form -->
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" value="ยังไม่ได้เลือกไฟล์" readonly>
+          <div class="input-group-btn">
+            <span class="fileUpload btn btn-warning">
+              <span class="upl" id="upload" style="font-weight: bold;">เลือกไฟล์</span>
+              <input type="file" name="files[]" class="upload up" id="up" onchange="readURL(this);" multiple required />
+            </span><!-- btn-orange -->
+          </div><!-- btn -->
+        </div><!-- group -->
+      </div><!-- form-group -->
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        // File type validation
+        $("#fileInput").change(function () {
+          var fileLength = this.files.length;
+          var match = ["image/jpeg", "image/png", "image/jpg", "image/gif", "video/mp4", "video/m4a",
+            "video/flav", "video/wav"
+          ];
+          var i;
+          for (i = 0; i < fileLength; i++) {
+            var file = this.files[i];
+            var imagefile = file.type;
+            if (!(match.includes(imagefile))) {
+              alert('Please select a valid file.');
+              $("#fileInput").val('');
+              return false;
+            }
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).on('change', '.up', function () {
+        var names = [];
+        var length = $(this).get(0).files.length;
+        for (var i = 0; i < $(this).get(0).files.length; ++i) {
+          names.push($(this).get(0).files[i].name);
+        }
+        // $("input[name=file]").val(names);
+        if (length > 2) {
+          var fileName = names.join(', ');
+          $(this).closest('.form-group').find('.form-control').attr("value", length + " files selected");
+        } else {
+          $(this).closest('.form-group').find('.form-control').attr("value", names);
+        }
+      });
+    </script>
+</body>
+
+</html>

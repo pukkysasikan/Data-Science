@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Mali:wght@600&display=swap" rel="stylesheet">
+        <title>upload</title>
+      </head>
+    <style>
+          body {
+     background-image: linear-gradient(to bottom, rgba(300,300, 300, 0.7) 0%,rgba(300, 300, 300, 0.7) 100%), url('https://wallpaperaccess.com/full/277644.jpg');
+     background-size: cover;
+    font-family: 'mali', serif;
+    font-size: 15px;
+    background-size: cover;
+    margin-top: 2.5%;
+    
+     }
+      </style>
+<body>
+    <h1>บันทึกข้อมูล</h1><br>
+    {% for row in datas %}
+    <p>{{row}}</p>
+
+    {% endfor %}
+
+</body>
+</html>
